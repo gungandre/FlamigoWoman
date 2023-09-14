@@ -1,0 +1,180 @@
+{
+  "product": [
+    {
+      "name": "Bella Top",
+      "Price": 89900,
+      "img": ["bella top1.JPG", "bella top2.JPG"],
+      "size": [
+        {
+          "tipe": "S",
+          "qty": 0
+        },
+        {
+          "tipe": "M",
+          "qty": 0
+        },
+        {
+          "tipe": "L",
+          "qty": 10
+        },
+        {
+          "tipe": "XL",
+          "qty": 10
+        }
+      ]
+    },
+    {
+      "name": "Carla Top",
+      "Price": 98900,
+      "img": [
+        "carla top1.JPG",
+        "carla top2.JPG",
+        "carla top3.JPG",
+        "carla top3.JPG"
+      ],
+      "size": [
+        {
+          "tipe": "S",
+          "qty": 1
+        },
+        {
+          "tipe": "M",
+          "qty": 2
+        },
+        {
+          "tipe": "L",
+          "qty": 0
+        },
+        {
+          "tipe": "XL",
+          "qty": 10
+        }
+      ]
+    },
+    {
+      "name": "Ella Top",
+      "Price": 99900,
+      "img": [
+        "ella top1.JPG",
+        "ella top2.JPG",
+        "ella top3.JPG",
+        "ella top4.JPG"
+      ],
+      "size": [
+        {
+          "tipe": "S",
+          "qty": 10
+        },
+        {
+          "tipe": "M",
+          "qty": 10
+        },
+        {
+          "tipe": "L",
+          "qty": 10
+        },
+        {
+          "tipe": "XL",
+          "qty": 10
+        }
+      ]
+    },
+    {
+      "name": "Evelyn Dress",
+      "Price": 189000,
+      "img": [
+        "evelyn dress1.JPG",
+        "evelyn dress2.JPG",
+        "evelyn dress3.JPG",
+        "evelyn dress4.JPG"
+      ],
+      "size": [
+        {
+          "tipe": "S",
+          "qty": 10
+        },
+        {
+          "tipe": "M",
+          "qty": 10
+        },
+        {
+          "tipe": "L",
+          "qty": 10
+        },
+        {
+          "tipe": "XL",
+          "qty": 10
+        }
+      ]
+    },
+    {
+      "name": "Sylvie top",
+      "Price": 89900,
+      "img": ["sylvie top1.JPG"],
+      "size": [
+        {
+          "tipe": "S",
+          "qty": 10
+        },
+        {
+          "tipe": "M",
+          "qty": 10
+        },
+        {
+          "tipe": "L",
+          "qty": 10
+        },
+        {
+          "tipe": "XL",
+          "qty": 10
+        }
+      ]
+    },
+    {
+      "name": "Tara Top",
+      "Price": 65000,
+      "img": ["tara top1.JPG", "tara top2.JPG"],
+      "size": [
+        {
+          "tipe": "S",
+          "qty": 10
+        },
+        {
+          "tipe": "M",
+          "qty": 10
+        },
+        {
+          "tipe": "L",
+          "qty": 10
+        },
+        {
+          "tipe": "XL",
+          "qty": 10
+        }
+      ]
+    },
+    {
+      "name": "Veronica Dress",
+      "Price": 115000,
+      "img": ["veronica dres1.JPG", "veronica dres2.JPG"],
+      "size": [
+        {
+          "tipe": "S",
+          "qty": 10
+        },
+        {
+          "tipe": "M",
+          "qty": 10
+        },
+        {
+          "tipe": "L",
+          "qty": 10
+        },
+        {
+          "tipe": "XL",
+          "qty": 10
+        }
+      ]
+    }
+  ]
+}
