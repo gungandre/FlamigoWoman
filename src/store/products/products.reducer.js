@@ -12,11 +12,32 @@ export const getDataProducts = createAsyncThunk("products", async () => {
   return fetchData.data;
 });
 
+const stockOnlyFunction = (currentState, action) => {
+  if (action) {
+    return currentState.filter((product) => product.avaiable === true);
+  }
+
+  return currentState;
+};
+
 const productsSlice = createSlice({
   name: "products",
   initialState: PRODUCTS_INITIAL_STATE,
   reducers: {
-    setProducts: (state, action) => {},
+    stockOnly: (state, action) => {
+      state.products = stockOnlyFunction(state.products, action.payload);
+    },
+    sort: (state, action) => {
+      if (action.payload === "asc") {
+        state.products = state.products.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+      } else {
+        state.products = state.products.sort((a, b) =>
+          b.name.localeCompare(a.name)
+        );
+      }
+    },
   },
 
   extraReducers: (builder) => {
@@ -32,3 +53,5 @@ const productsSlice = createSlice({
 });
 
 export const productsReducer = productsSlice.reducer;
+
+export const { stockOnly, sort } = productsSlice.actions;

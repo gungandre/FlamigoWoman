@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ProductContainer = styled.div`
   width: 100%;
-  height: 100vh;
+  height: auto;
   margin-top: 100px;
   padding: 50px 50px;
 `;
@@ -41,7 +41,10 @@ export const ImgPrev = styled.div`
   width: 70px;
   height: auto;
 
-  position: fixed;
+  position: sticky;
+  top: 120px;
+
+  /* position: ${(props) => (props.inview ? "inherit" : "fixed")}; */
 `;
 
 export const ImgThumb = styled.div`

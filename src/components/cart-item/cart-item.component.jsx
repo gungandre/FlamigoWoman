@@ -1,4 +1,9 @@
-import { ContainerCartItem, DescContainer } from "./cart-item.styles";
+import {
+  ContainerCartItem,
+  DescContainer,
+  SoldOut,
+  ConImg,
+} from "./cart-item.styles";
 import { Link } from "react-router-dom";
 
 const formatter = new Intl.NumberFormat("id-ID", {
@@ -6,12 +11,16 @@ const formatter = new Intl.NumberFormat("id-ID", {
   currency: "IDR",
 });
 
-const CartItem = ({ product }) => {
+const CartItem = ({ product, sold }) => {
   const { name, img, Price } = product;
+
   return (
     <ContainerCartItem>
+      <SoldOut sold={sold}>SOLD OUT</SoldOut>
       <Link to={`/shop/${name}`}>
-        <img src={`produk/${img[0]}`} alt={`${img[0]}`} />
+        <ConImg>
+          <img src={`/produk/${img[0]}`} alt={`${img[0]}`} />
+        </ConImg>
       </Link>
 
       <DescContainer>

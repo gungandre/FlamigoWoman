@@ -25,6 +25,10 @@ import { useDispatch } from "react-redux";
 import { ButtonContainer } from "./product.styles";
 import ButtonAddToCart from "../../components/button-add-to-cart/button-add-to-cart.component";
 import { setCart } from "../../store/cart/cart.reducer";
+import { setRecentProducts } from "../../store/recent-product/recent-product.reducer";
+
+import RecentProduct from "../../components/recentProductFooter/recentProductFooter.component";
+import { useInView } from "react-intersection-observer";
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -38,11 +42,17 @@ const Product = () => {
   const { product } = useParams();
 
   const products = useSelector(selectProducts);
-  const productItem = products.filter((item) => item.name === product);
 
-  const [image, setImage] = useState(productItem[0].img[0]);
+  const productItem = products.find((item) => item.name === product);
+  const [image, setImage] = useState(productItem.img[0]);
+  const size = productItem.size;
+  useEffect(() => {
+    setImage(productItem.img[0]);
+  }, [products, productItem]);
 
-  const size = productItem[0].size;
+  useEffect(() => {
+    dispatch(setRecentProducts(productItem));
+  }, []);
 
   useEffect(() => {
     const checkQty = () => {
@@ -67,7 +77,7 @@ const Product = () => {
     setImage(item);
   };
 
-  const size2 = productItem[0].size;
+  const size2 = productItem.size;
 
   const activeButtonHandler = (index, size) => {
     setIndexButton(index);
@@ -100,22 +110,30 @@ const Product = () => {
     dispatch(
       setCart({
         name: product,
-        img: productItem[0].img[0],
+        img: productItem.img[0],
         size: currentSize,
-        harga: productItem[0].Price,
+        harga: productItem.Price,
         qty: qty,
-        total: productItem[0].Price * qty,
+        total: productItem.Price * qty,
       })
     );
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const [ref, inView] = useInView({
+    threshold: 1,
+  });
 
   return (
     <>
       <ProductContainer>
         <GridContainer>
-          <div style={{ position: "relative" }}>
-            <ImgPrev>
-              {productItem[0].img.map((item, index) => {
+          <div>
+            <ImgPrev inview={inView === true}>
+              {productItem.img.map((item, index) => {
                 return (
                   <>
                     <ImgThumb
@@ -125,7 +143,9 @@ const Product = () => {
                         changeImageHandler(index, item);
                       }}
                     >
-                      <img src={`/produk/${item}`} alt="" />
+                      <div>
+                        <img src={`/produk/${item}`} alt="" />
+                      </div>
                     </ImgThumb>
                   </>
                 );
@@ -139,7 +159,7 @@ const Product = () => {
           </div>
 
           <Description>
-            <h1 style={{ fontSize: "20px" }}>{productItem[0].name}</h1>
+            <h1 style={{ fontSize: "20px" }}>{productItem.name}</h1>
             <br />
             Minimal Scuba Jacket dengan desain minimalis yang cocok untuk style
             sehari-hari. Terdapat 2 kantong depan, 1 kantong dalam, dan aksen
@@ -244,6 +264,15 @@ const Product = () => {
           </Description>
         </GridContainer>
       </ProductContainer>
+      <div ref={ref}>
+        <hr style={{ opacity: "0.5" }} />
+      </div>
+
+      <br />
+
+      <RecentProduct />
+
+      <br />
     </>
   );
 };

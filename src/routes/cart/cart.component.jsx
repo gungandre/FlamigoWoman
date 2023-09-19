@@ -21,8 +21,13 @@ import {
 } from "../product/product.styles";
 import { NavLink } from "../../components/header/header-styles";
 import { selectProducts } from "../../store/products/product.selector";
-import { setMinusCart, setRemoveCart } from "../../store/cart/cart.reducer";
+import {
+  setMinusCart,
+  setRemoveCart,
+  setPlusCart,
+} from "../../store/cart/cart.reducer";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const formatter = new Intl.NumberFormat("id-ID", {
   style: "currency",
@@ -34,9 +39,34 @@ const Cart = () => {
   const cart = useSelector(cartSelector);
   const products = useSelector(selectProducts);
 
-  const plusHandler = (nameProduct, size, qty) => {};
+  const plusHandler = (nameProduct, size, qty, harga, total) => {
+    const findProduct = products.find(
+      (product) => product.name === nameProduct
+    );
 
-  const minusHandler = (nameProduct, size, qty) => {
+    if (findProduct) {
+      findProduct.size.map((product) => {
+        if (product.tipe === size) {
+          if (product.qty !== qty) {
+            dispatch(
+              setPlusCart({
+                name: nameProduct,
+                qty: qty + 1,
+                size: size,
+                total: total + harga,
+              })
+            );
+
+            return false;
+          } else {
+            return true;
+          }
+        }
+      });
+    }
+  };
+
+  const minusHandler = (nameProduct, size, qty, harga, total) => {
     const findProduct = products.find(
       (product) => product.name === nameProduct
     );
@@ -52,6 +82,7 @@ const Cart = () => {
             name: nameProduct,
             qty: qty - 1,
             size: size,
+            total: total - harga,
           })
         );
       } else {
@@ -64,13 +95,6 @@ const Cart = () => {
         );
       }
     }
-
-    // if (findProduct) {
-    //   cart.map((product) => {
-    //     if (product.name === nameProduct) {
-    //     }
-    //   });
-    // }
   };
 
   const removeHandler = (nameProduct, size, qty) => {
@@ -89,7 +113,7 @@ const Cart = () => {
       <br />
       <p>Your cart is empty</p>
       <br />
-      <Link to={"/"}>
+      <Link to={"/shop"}>
         <ContinueShopping>CONTINUE SHOPPING</ContinueShopping>
       </Link>
     </CartEmptyContainer>
@@ -192,14 +216,32 @@ const Cart = () => {
               <QtyContainer>
                 <GridQtyContainer>
                   <Minus
-                    onClick={() => minusHandler(cart.name, cart.size, cart.qty)}
+                    onClick={() =>
+                      minusHandler(
+                        cart.name,
+                        cart.size,
+                        cart.qty,
+                        cart.harga,
+                        cart.total
+                      )
+                    }
                   >
                     <b>-</b>
                   </Minus>
                   <Qty>{cart.qty}</Qty>
-                  <Plus>
+                  <Plus
+                    onClick={() => {
+                      plusHandler(
+                        cart.name,
+                        cart.size,
+                        cart.qty,
+                        cart.harga,
+                        cart.total
+                      );
+                    }}
+                  >
                     <div>
-                      <b>+</b>{" "}
+                      <b>+</b>
                     </div>
                   </Plus>
                 </GridQtyContainer>
@@ -212,6 +254,7 @@ const Cart = () => {
                 <Line></Line>
               </Remove>
             </td>
+
             <td
               align="right"
               width={"20%"}
@@ -249,7 +292,8 @@ const Cart = () => {
         </OrderNoteContainer>
         <OrderNoteContainer2>
           <p style={{ fontSize: "18px", textAlign: "end" }}>
-            Total: {formatter.format(100000)}
+            Total:{" "}
+            {formatter.format(cart.reduce((acc, item) => acc + item.total, 0))}
           </p>
           <Checkout>CHECKOUT</Checkout>
         </OrderNoteContainer2>

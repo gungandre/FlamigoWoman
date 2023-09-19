@@ -9,7 +9,7 @@ export const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 2;
 `;
 
 export const DivContainer = styled.div`
@@ -40,4 +40,5 @@ export const Span = styled.span`
 
 export const NavLink = styled(Link)`
   text-decoration: none;
+  color: black;
 `;

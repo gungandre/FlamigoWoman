@@ -31,7 +31,21 @@ const minusCart = (cartItems, productToMinus) => {
     return cartItems.map((product) =>
       product.name === productToMinus.name &&
       product.size === productToMinus.size
-        ? { ...product, qty: productToMinus.qty }
+        ? { ...product, qty: productToMinus.qty, total: productToMinus.total }
+        : product
+    );
+  }
+};
+
+const plusCart = (cartItems, productToPlus) => {
+  const findItemCart = cartItems.find(
+    (item) => item.name === productToPlus.name
+  );
+
+  if (findItemCart) {
+    return cartItems.map((product) =>
+      product.name === productToPlus.name && product.size === productToPlus.size
+        ? { ...product, qty: productToPlus.qty, total: productToPlus.total }
         : product
     );
   }
@@ -60,9 +74,13 @@ const cartSlice = createSlice({
     setRemoveCart: (state, action) => {
       state.cart = removeCart(state.cart, action.payload);
     },
+    setPlusCart: (state, action) => {
+      state.cart = plusCart(state.cart, action.payload);
+    },
   },
 });
 
-export const { setCart, setMinusCart, setRemoveCart } = cartSlice.actions;
+export const { setCart, setMinusCart, setRemoveCart, setPlusCart } =
+  cartSlice.actions;
 
 export const cartReducer = cartSlice.reducer;
