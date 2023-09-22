@@ -1,5 +1,4 @@
 import { HamburgerButton, Bar } from "./hamburger-menu.styles";
-import { useSelector } from "react-redux";
 
 const HamburgerMenu = ({ isOpen, toggleMenu }) => {
   return (
