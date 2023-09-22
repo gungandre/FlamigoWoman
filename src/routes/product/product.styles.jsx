@@ -5,22 +5,43 @@ export const ProductContainer = styled.div`
   height: auto;
   margin-top: 100px;
   padding: 50px 50px;
+
+  @media screen and (max-width: 999px) {
+    padding: 0px;
+  }
+
+  @media screen and (max-width: 999px) {
+    padding: 0px;
+    margin-top: 60px;
+  }
 `;
 
 export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: 20% 40% 40%;
+
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: 10% 50% 40%;
+  }
+
+  @media screen and (max-width: 999px) {
+    grid-template-columns: 100%;
+  }
 `;
 
 export const ImgContainer = styled.div`
-  padding: 0px 20px;
+  padding: 0px;
   width: 100%;
   height: 100%;
   position: relative;
 
-  &:not(:first-child) {
+  /* &:not(:first-child) {
     margin-top: 25px;
-  }
+  } */
+
+  /* @media screen and (max-width: 999px;) {
+    padding: 0px;
+  } */
 
   img {
     max-width: 100%;
@@ -29,12 +50,35 @@ export const ImgContainer = styled.div`
 `;
 
 export const Description = styled.div`
-  padding-left: 100px;
-  padding-right: 50px;
+  padding-left: 75px;
+  padding-right: 75px;
   text-align: left;
   line-height: 25px;
 
   color: #424242;
+
+  h1 {
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  @media screen and (max-width: 999px) {
+    margin-top: 50px;
+  }
+
+  @media screen and (max-width: 699px) {
+    font-size: 14px;
+    h1 {
+      font-size: 18px;
+    }
+
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 `;
 
 export const ImgPrev = styled.div`
@@ -43,6 +87,10 @@ export const ImgPrev = styled.div`
 
   position: sticky;
   top: 120px;
+
+  @media screen and (max-width: 999px) {
+    display: none;
+  }
 
   /* position: ${(props) => (props.inview ? "inherit" : "fixed")}; */
 `;
@@ -63,6 +111,10 @@ export const ImgThumb = styled.div`
   &:hover {
     opacity: 0.8;
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 1200px) {
+    width: 80%;
   }
 
   opacity: ${(props) => (props.active ? 0.5 : "none")};

@@ -10,6 +10,11 @@ export const HeaderContainer = styled.div`
   top: 0;
   left: 0;
   z-index: 2;
+
+  @media screen and (max-width: 699px) {
+    height: 60px;
+    padding: 0px;
+  }
 `;
 
 export const DivContainer = styled.div`
@@ -20,6 +25,12 @@ export const DivContainer = styled.div`
   align-items: center;
   padding: 0 20px;
   justify-content: space-between;
+
+  img {
+    @media screen and (max-width: 699px) {
+      width: 130px;
+    }
+  }
 `;
 
 export const MenuContainer = styled.div`
@@ -27,6 +38,11 @@ export const MenuContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: 700px) {
+    justify-content: none;
+    flex-direction: row-reverse;
+  }
 `;
 export const Span = styled.span`
   color: #1c1c1ca6;

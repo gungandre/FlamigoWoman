@@ -30,6 +30,14 @@ import { setRecentProducts } from "../../store/recent-product/recent-product.red
 import RecentProduct from "../../components/recentProductFooter/recentProductFooter.component";
 import { useInView } from "react-intersection-observer";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
 const Product = () => {
   const dispatch = useDispatch();
 
@@ -37,6 +45,7 @@ const Product = () => {
   const [indexButton, setIndexButton] = useState(null);
   const [currentSize, setCurrentSize] = useState("");
   const [currentQty, setCurrentQty] = useState(0);
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
   const [qty, setQty] = useState(1);
   const { product } = useParams();
@@ -52,6 +61,20 @@ const Product = () => {
 
   useEffect(() => {
     dispatch(setRecentProducts(productItem));
+  }, []);
+
+  const updateViewportWidth = () => {
+    setViewportWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    // Tambahkan event listener untuk mengawasi perubahan ukuran layar
+    window.addEventListener("resize", updateViewportWidth);
+
+    // Membersihkan event listener saat komponen di-unmount
+    return () => {
+      window.removeEventListener("resize", updateViewportWidth);
+    };
   }, []);
 
   useEffect(() => {
@@ -152,14 +175,34 @@ const Product = () => {
               })}
             </ImgPrev>
           </div>
+
           <div>
-            <ImgContainer>
-              <img src={`/produk/${image}`} alt="" />
-            </ImgContainer>
+            {viewportWidth <= 999 ? (
+              <Swiper
+                modules={[Navigation, Pagination, Scrollbar, A11y]}
+                spaceBetween={50}
+                slidesPerView={1}
+                pagination={{ clickable: true }}
+                onSwiper={(swiper) => console.log(swiper)}
+                onSlideChange={() => console.log("slide change")}
+              >
+                {productItem.img.map((item, index) => (
+                  <SwiperSlide>
+                    <ImgContainer key={index}>
+                      <img src={`/produk/${item}`} alt="" />
+                    </ImgContainer>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : (
+              <ImgContainer>
+                <img src={`/produk/${image}`} alt="" />
+              </ImgContainer>
+            )}
           </div>
 
           <Description>
-            <h1 style={{ fontSize: "20px" }}>{productItem.name}</h1>
+            <h1>{productItem.name}</h1>
             <br />
             Minimal Scuba Jacket dengan desain minimalis yang cocok untuk style
             sehari-hari. Terdapat 2 kantong depan, 1 kantong dalam, dan aksen
@@ -270,7 +313,7 @@ const Product = () => {
 
       <br />
 
-      <RecentProduct />
+      <RecentProduct viewWidth={viewportWidth} />
 
       <br />
     </>

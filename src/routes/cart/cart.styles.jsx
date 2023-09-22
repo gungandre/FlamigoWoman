@@ -1,10 +1,57 @@
 import styled, { keyframes } from "styled-components";
 
+import {
+  QtyContainer,
+  GridQtyContainer,
+  Minus,
+  Plus,
+  Qty,
+} from "../product/product.styles";
+
+export const QtyContainer2 = styled(QtyContainer)`
+  @media screen and (max-width: 700px) {
+    width: 100px;
+    height: 35px;
+  }
+`;
+
+export const GridQtyContainer2 = styled(GridQtyContainer)`
+  @media screen and (max-width: 700px) {
+    height: 35px;
+  }
+`;
+
+export const Minus2 = styled(Minus)`
+  @media screen and (max-width: 700px) {
+    height: 35px;
+  }
+`;
+
+export const Qty2 = styled(Qty)`
+  @media screen and (max-width: 700px) {
+    height: 35px;
+  }
+`;
+
+export const Plus2 = styled(Plus)`
+  @media screen and (max-width: 700px) {
+    height: 35px;
+  }
+`;
+
 export const CartContainer = styled.div`
-  width: 60%;
-  height: 500px;
+  width: 1000px;
+  height: auto;
 
   margin: 150px auto;
+
+  @media screen and (max-width: 1100px) {
+    width: 90%;
+  }
+
+  @media screen and (max-width: 700px) {
+    margin: 100px auto;
+  }
 `;
 
 export const ImgContainer = styled.div`
@@ -23,13 +70,21 @@ export const DivCheckout = styled.div`
   height: auto;
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 export const OrderNoteContainer = styled.div`
   width: 40%;
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
 `;
 export const OrderNoteContainer2 = styled.div`
-  width: 40%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   flex-grow: none;
@@ -73,15 +128,18 @@ export const Checkout = styled.button`
   color: white;
   font-size: 14px;
   padding: 15px 20px;
+
+  @media screen and (max-width: 700px) {
+    align-self: none;
+    width: 100%;
+  }
 `;
 
 export const CartEmptyContainer = styled.div`
-  width: auto;
-  height: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 35vh;
+
   text-align: center;
 
   padding: 20px;
@@ -93,4 +151,7 @@ export const ContinueShopping = styled.button`
   color: white;
   padding: 15px;
   cursor: pointer;
+  @media screen and (max-width: 700px) {
+    font-size: 13px;
+  }
 `;

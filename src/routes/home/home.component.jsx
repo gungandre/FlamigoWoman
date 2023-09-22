@@ -14,6 +14,10 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const getProduk = async () => {
       try {
         dispatch(getDataProducts());

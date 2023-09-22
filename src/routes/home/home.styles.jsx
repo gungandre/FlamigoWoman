@@ -10,6 +10,16 @@ export const HomeContainer = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 30px;
   justify-items: center;
+
+  @media screen and (max-width: 999px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 50px 30px;
+  }
+
+  @media screen and (max-width: 699px) {
+    grid-template-columns: 1fr 1fr;
+    padding: 50px 10px;
+  }
 `;
 
 export const CartItemStyled = styled(CartItem)`

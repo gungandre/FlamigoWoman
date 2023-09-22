@@ -13,21 +13,20 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-const RecentProduct = () => {
+const RecentProduct = ({ viewWidth }) => {
   const recentProducts = useSelector(selectRecentProducts);
 
   return (
     <RecentProductsContainer>
-      <h1 style={{ fontSize: "20px", textAlign: "center" }}>
-        RECENTLY VIEWED PRODUCTS
-      </h1>
+      <h1>RECENTLY VIEWED PRODUCTS</h1>
       <br />
       <FlexContainer>
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}
-          spaceBetween={50}
-          slidesPerView={4}
-          navigation
+          spaceBetween={viewWidth < 700 ? 20 : 50}
+          slidesPerView={
+            viewWidth > 999 ? 4 : viewWidth <= 999 && viewWidth > 699 ? 3 : 2
+          }
           pagination={{ clickable: true }}
           onSwiper={(swiper) => console.log(swiper)}
           onSlideChange={() => console.log("slide change")}
