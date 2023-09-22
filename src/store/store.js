@@ -8,7 +8,7 @@ import storage from "redux-persist/lib/storage";
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["user", "recentProducts"],
+  blacklist: ["user", "recentProducts", "burgerButton"],
 };
 
 const middlewares = [process.env.NODE_ENV !== "production" && longger].filter(

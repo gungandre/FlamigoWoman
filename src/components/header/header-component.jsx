@@ -48,7 +48,7 @@ const Header = forwardRef((props, ref) => {
   return (
     <>
       <HeaderContainer ref={ref}>
-        <Sidebar menuOpen={burgerButton} />
+        <Sidebar menuOpen={burgerButton} cartTotal={cartTotal} />
         <DivContainer>
           <Link to={"/"}>
             <img src={`${logo}`} alt={`${logo}`} width={"190px"} />

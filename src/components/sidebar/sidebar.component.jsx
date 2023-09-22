@@ -11,7 +11,7 @@ import { NavLink } from "../header/header-styles";
 import { useDispatch } from "react-redux";
 import { setBurgerButton } from "../../store/burger-buton/burger-button.reducer";
 
-const Sidebar = ({ menuOpen }) => {
+const Sidebar = ({ menuOpen, cartTotal }) => {
   const dispatch = useDispatch();
 
   const closeHandler = () => {
@@ -35,7 +35,7 @@ const Sidebar = ({ menuOpen }) => {
             <P>Shop</P>
           </NavLink>
           <NavLink to={"/cart"} style={{ marginBottom: "10px" }}>
-            <P>Cart</P>
+            <P>Cart ({cartTotal.length})</P>
           </NavLink>
         </MenuSidebarContainer>
       </SidebarContainer>
