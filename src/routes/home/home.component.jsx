@@ -1,7 +1,7 @@
 import Jumbotron from "../../components/jumbotron/jumbotron-component";
 
-import { HomeContainer, CartItemStyled, LazyLoadElement } from "./home.styles";
-import { useEffect, useState } from "react";
+import { HomeContainer, LazyLoadElement } from "./home.styles";
+import { useEffect } from "react";
 import { getDataProducts } from "../../store/products/products.reducer";
 import { useDispatch, useSelector } from "react-redux";
 import {

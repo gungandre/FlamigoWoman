@@ -8,10 +8,8 @@ import {
 } from "./sidebar.styles";
 import { NavLink } from "../header/header-styles";
 
-import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setBurgerButton } from "../../store/burger-buton/burger-button.reducer";
-import { selectBurgerButton } from "../../store/burger-buton/burger.selector";
 
 const Sidebar = ({ menuOpen }) => {
   const dispatch = useDispatch();

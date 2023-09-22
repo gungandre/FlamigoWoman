@@ -11,7 +11,6 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { setUser } from "../../store/user/user.reducer";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import Footer from "../../components/footer/footer.component";
 
 const Login = () => {
   const [showAlert, setShowAlert] = useState(false);
