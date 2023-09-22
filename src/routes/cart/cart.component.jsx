@@ -61,7 +61,7 @@ const Cart = () => {
     );
 
     if (findProduct) {
-      findProduct.size.map((product) => {
+      findProduct.size.forEach((product) => {
         if (product.tipe === size) {
           if (product.qty !== qty) {
             dispatch(

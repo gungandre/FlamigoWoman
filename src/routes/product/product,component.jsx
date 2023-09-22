@@ -61,7 +61,7 @@ const Product = () => {
 
   useEffect(() => {
     dispatch(setRecentProducts(productItem));
-  }, []);
+  }, [dispatch, productItem]);
 
   const updateViewportWidth = () => {
     setViewportWidth(window.innerWidth);
@@ -93,7 +93,7 @@ const Product = () => {
     };
 
     checkQty();
-  }, []);
+  }, [size]);
 
   const changeImageHandler = (index, item) => {
     setActiveIndex(index);
