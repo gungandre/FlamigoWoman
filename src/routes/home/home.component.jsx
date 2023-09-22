@@ -27,7 +27,7 @@ const Home = () => {
     };
 
     getProduk();
-  }, []);
+  }, [dispatch]);
 
   const products = useSelector(selectProducts);
   const loading = useSelector(selectIsLoading);
