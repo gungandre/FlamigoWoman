@@ -26,7 +26,7 @@ function App() {
     if (headerRef.current) {
       setHeaderHeight(headerRef.current.clientHeight);
     }
-  }, []);
+  }, [headerHeight]);
 
   return (
     <Suspense fallback={<Spinner />}>

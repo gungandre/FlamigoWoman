@@ -4,6 +4,7 @@ import { HomeContainer, LazyLoadElement } from "./home.styles";
 import { useEffect } from "react";
 import { getDataProducts } from "../../store/products/products.reducer";
 import { useDispatch, useSelector } from "react-redux";
+import Skeleton from "../../components/skeleton/skeleton.component";
 import {
   selectIsLoading,
   selectProducts,
@@ -37,7 +38,7 @@ const Home = () => {
       <Jumbotron />
       <HomeContainer>
         {loading ? (
-          <h1>loading</h1>
+          <Skeleton />
         ) : (
           products &&
           products.map((product, i) => {

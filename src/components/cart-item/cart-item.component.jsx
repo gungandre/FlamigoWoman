@@ -5,6 +5,8 @@ import {
   ConImg,
 } from "./cart-item.styles";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import Skeleton from "../skeleton/skeleton.component";
 
 const formatter = new Intl.NumberFormat("id-ID", {
   style: "currency",
@@ -14,20 +16,34 @@ const formatter = new Intl.NumberFormat("id-ID", {
 const CartItem = ({ product, sold }) => {
   const { name, img, Price } = product;
 
+  const [imageLoading, setImageLoading] = useState(true);
+
+  const handleImageLoad = () => {
+    setImageLoading(false);
+  };
+
   return (
     <ContainerCartItem>
-      <SoldOut sold={sold}>SOLD OUT</SoldOut>
+      {!imageLoading && <SoldOut sold={sold}>SOLD OUT</SoldOut>}
+
       <Link to={`/shop/${name}`}>
         <ConImg>
-          <img src={`/produk/${img[0]}`} alt={`${img[0]}`} />
+          {imageLoading && <Skeleton />}
+          <img
+            onLoad={handleImageLoad}
+            src={`/produk/${img[0]}`}
+            alt={`${img[0]}`}
+          />
         </ConImg>
       </Link>
 
-      <DescContainer>
-        <span> {name.toUpperCase()}</span>
+      {!imageLoading && (
+        <DescContainer>
+          <span> {name.toUpperCase()}</span>
 
-        <span>{formatter.format(Price)}</span>
-      </DescContainer>
+          <span>{formatter.format(Price)}</span>
+        </DescContainer>
+      )}
     </ContainerCartItem>
   );
 };
