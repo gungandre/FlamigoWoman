@@ -9,10 +9,11 @@ import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 import Spinner from "./components/spinner/spinner.component";
+import Shop from "./routes/shop/shop.component";
 
 const Home = lazy(() => import("./routes/home/home.component"));
 const Product = lazy(() => import("./routes/product/product,component"));
-const Shop = lazy(() => import("./routes/shop/shop.component"));
+// const Shop = lazy(() => import("./routes/shop/shop.component"));
 const Login = lazy(() => import("./routes/login/login.component"));
 const Register = lazy(() => import("./routes/register/register.component"));
 
@@ -25,8 +26,9 @@ function App() {
   useEffect(() => {
     if (headerRef.current) {
       setHeaderHeight(headerRef.current.clientHeight);
+      console.log("hahahha", headerRef.current.clientHeight);
     }
-  }, [headerHeight]);
+  }, [headerRef.current]);
 
   return (
     <Suspense fallback={<Spinner />}>
