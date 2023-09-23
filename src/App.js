@@ -28,7 +28,10 @@ function App() {
       setHeaderHeight(headerRef.current.clientHeight);
       console.log("hahahha", headerRef.current.clientHeight);
     }
-  }, [headerRef.current]);
+
+    // komponent shop digunakan sebagai depedencies useEfect karena shop menjadi asynchronus berkat lazy()
+    // maka dari itu shop menjadi depedencies agar saat route shop di klik akan mengirim props clientHeight header nya
+  }, [Shop]);
 
   return (
     <Suspense fallback={<Spinner />}>
