@@ -111,6 +111,7 @@ export const Select = styled.select`
   border: 1px solid rgba(0, 0, 0, 0.1);
   transition: border 0.3s ease-in-out;
   outline: none;
+  -webkit-appearance: none;
 
   &:focus {
     border: 1px solid rgba(0, 0, 0, 1);
