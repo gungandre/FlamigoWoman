@@ -4,7 +4,7 @@ import { lazy, Suspense } from "react";
 import Header from "./components/header/header-component";
 import Cart from "./routes/cart/cart.component";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { useLocation } from "react-router-dom";
 
