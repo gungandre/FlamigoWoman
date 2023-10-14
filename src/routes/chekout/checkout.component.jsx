@@ -88,7 +88,7 @@ const Checkout = ({ height }) => {
     const fethData = () => {
       const config = {
         method: "get",
-        url: "http://localhost:5171/province",
+        url: "https://healthy-overalls-fly.cyclic.app/province",
       };
 
       axios(config)
@@ -129,7 +129,7 @@ const Checkout = ({ height }) => {
     });
 
     axios
-      .post("http://localhost:5171/cost", {
+      .post("https://healthy-overalls-fly.cyclic.app/cost", {
         address,
         country,
         first_name,
@@ -157,7 +157,7 @@ const Checkout = ({ height }) => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:5171/city/${event.target.value}`
+        `https://healthy-overalls-fly.cyclic.app/city/${event.target.value}`
       );
       setCity(response.data.rajaongkir.results);
       setLoading(false);
@@ -170,7 +170,7 @@ const Checkout = ({ height }) => {
   const courierHandler = (event) => {
     setLoading(true);
     axios
-      .post("http://localhost:5171/cost", {
+      .post("https://healthy-overalls-fly.cyclic.app/cost", {
         city: formData.city,
         courier: event.target.value,
       })
