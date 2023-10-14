@@ -9,7 +9,7 @@ const HeaderCheckout = () => {
     <HeaderCheckoutContainer>
       <HeaderCheckoutContent>
         <Link to={"/shop"}>
-          <div style={{ width: "40px" }}>
+          <div style={{ width: "40px", color: "black" }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -25,7 +25,11 @@ const HeaderCheckout = () => {
 
         <div>
           <Link to={"/"} style={{ textDecoration: "none" }}>
-            <h1 style={{ fontSize: "22px", letterSpacing: "1px" }}>FLOMIGO</h1>
+            <h1
+              style={{ fontSize: "22px", letterSpacing: "1px", color: "black" }}
+            >
+              FLOMIGO
+            </h1>
           </Link>
         </div>
 
