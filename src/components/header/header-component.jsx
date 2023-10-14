@@ -49,7 +49,7 @@ const Header = forwardRef(({ setHeaderHeight }) => {
 
     // komponent shop digunakan sebagai depedencies useEfect karena shop menjadi asynchronus berkat lazy()
     // maka dari itu shop menjadi depedencies agar saat route shop di klik akan mengirim props clientHeight header nya
-  }, []);
+  }, [setHeaderHeight]);
 
   const toggleMenu = () => {
     dispatch(setBurgerButton(!burgerButton));
