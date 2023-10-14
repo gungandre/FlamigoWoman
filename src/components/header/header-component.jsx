@@ -12,14 +12,15 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import { cartSelector } from "../../store/cart/cart.selector";
 import { forwardRef } from "react";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import HamburgerMenu from "../hamburger-menu/hamburger-menu.component";
 import Sidebar from "../sidebar/sidebar.component";
 import { selectBurgerButton } from "../../store/burger-buton/burger.selector";
 import { setBurgerButton } from "../../store/burger-buton/burger-button.reducer";
 import { useDispatch } from "react-redux";
 
-const Header = forwardRef((props, ref) => {
+const Header = forwardRef(({ setHeaderHeight }) => {
+  const headerRef = useRef(null);
   const dispatch = useDispatch();
   const cartTotal = useSelector(cartSelector);
 
@@ -41,13 +42,22 @@ const Header = forwardRef((props, ref) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.clientHeight);
+    }
+
+    // komponent shop digunakan sebagai depedencies useEfect karena shop menjadi asynchronus berkat lazy()
+    // maka dari itu shop menjadi depedencies agar saat route shop di klik akan mengirim props clientHeight header nya
+  }, []);
+
   const toggleMenu = () => {
     dispatch(setBurgerButton(!burgerButton));
   };
 
   return (
     <>
-      <HeaderContainer ref={ref}>
+      <HeaderContainer ref={headerRef}>
         <Sidebar menuOpen={burgerButton} cartTotal={cartTotal} />
         <DivContainer>
           <Link to={"/"}>

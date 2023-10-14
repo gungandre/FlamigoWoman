@@ -4,14 +4,13 @@ import { lazy, Suspense } from "react";
 import Header from "./components/header/header-component";
 import Cart from "./routes/cart/cart.component";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 import { useLocation } from "react-router-dom";
 
 import Spinner from "./components/spinner/spinner.component";
 import Shop from "./routes/shop/shop.component";
 import PrivateComponent from "./components/private-component/private-component";
-
 const Home = lazy(() => import("./routes/home/home.component"));
 const Product = lazy(() => import("./routes/product/product,component"));
 // const Shop = lazy(() => import("./routes/shop/shop.component"));
@@ -21,25 +20,15 @@ const Checkout = lazy(() => import("./routes/chekout/checkout.component"));
 const Account = lazy(() => import("./routes/account/account.component"));
 
 function App() {
-  const headerRef = useRef(null);
   const [headerHeight, setHeaderHeight] = useState(0);
 
   const location = useLocation();
   // uselocation untuk menghakses alamat url saat ini
 
-  useEffect(() => {
-    if (headerRef.current) {
-      setHeaderHeight(headerRef.current.clientHeight);
-    }
-
-    // komponent shop digunakan sebagai depedencies useEfect karena shop menjadi asynchronus berkat lazy()
-    // maka dari itu shop menjadi depedencies agar saat route shop di klik akan mengirim props clientHeight header nya
-  }, [headerHeight]);
-
   return (
     <Suspense fallback={<Spinner />}>
       <Routes>
-        <Route path="/" element={<Header ref={headerRef} />}>
+        <Route path="/" element={<Header setHeaderHeight={setHeaderHeight} />}>
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
