@@ -178,10 +178,10 @@ export const ImgContainer = styled.div`
   position: relative;
   padding: 0px 5px;
   height: 100%;
+  width: 53.3px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   background-color: #e0dede;
-  position: relative;
 
   img {
     width: 100%;
