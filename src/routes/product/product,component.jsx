@@ -32,6 +32,8 @@ import { useInView } from "react-intersection-observer";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import Footer from "../../components/footer/footer.component";
+import { useNavigate } from "react-router-dom";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -40,6 +42,7 @@ import "swiper/css/scrollbar";
 
 const Product = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [activesIndex, setActiveIndex] = useState(0);
   const [indexButton, setIndexButton] = useState(null);
@@ -140,6 +143,23 @@ const Product = () => {
         total: productItem.Price * qty,
       })
     );
+
+    navigate("/cart");
+  };
+
+  const buyHandler = () => {
+    dispatch(
+      setCart({
+        name: product,
+        img: productItem.img[0],
+        size: currentSize,
+        harga: productItem.Price,
+        qty: qty,
+        total: productItem.Price * qty,
+      })
+    );
+
+    navigate("/checkout");
   };
 
   useEffect(() => {
@@ -300,7 +320,7 @@ const Product = () => {
               {currentQty === 0 ? "SOLD OUT" : "ADD TO CART"}
             </ButtonAddToCart>
             <CheckoutContainer sold={currentQty === 0}>
-              <ButtonCheckout>BUY IT NOW</ButtonCheckout>
+              <ButtonCheckout onClick={buyHandler}>BUY IT NOW</ButtonCheckout>
             </CheckoutContainer>
             <br />
             <br />
@@ -316,6 +336,7 @@ const Product = () => {
       <RecentProduct viewWidth={viewportWidth} />
 
       <br />
+      <Footer />
     </>
   );
 };

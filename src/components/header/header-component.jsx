@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { cartSelector } from "../../store/cart/cart.selector";
 import { forwardRef } from "react";
-import { selectUser } from "../../store/user/user.selector";
+
 import { useState, useEffect } from "react";
 import HamburgerMenu from "../hamburger-menu/hamburger-menu.component";
 import Sidebar from "../sidebar/sidebar.component";
@@ -22,7 +22,7 @@ import { useDispatch } from "react-redux";
 const Header = forwardRef((props, ref) => {
   const dispatch = useDispatch();
   const cartTotal = useSelector(cartSelector);
-  const user = useSelector(selectUser);
+
   const burgerButton = useSelector(selectBurgerButton);
 
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
@@ -61,8 +61,8 @@ const Header = forwardRef((props, ref) => {
               </div>
             ) : (
               <>
-                <NavLink to={user ? "/logout" : "/login"}>
-                  <Span>{user ? "Log Out" : "Login"}</Span>
+                <NavLink to={"/account"}>
+                  <Span>Account</Span>
                 </NavLink>
 
                 <NavLink to={"/shop"}>

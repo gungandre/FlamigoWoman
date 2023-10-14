@@ -10,6 +10,7 @@ import {
   selectProducts,
 } from "../../store/products/product.selector";
 import Footer from "../../components/footer/footer.component";
+import Whatsapp from "../../components/whatsapp/whatsapp.component";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ const Home = () => {
           })
         )}
       </HomeContainer>
+      <Whatsapp />
       <Footer />
     </>
   );

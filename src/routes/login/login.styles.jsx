@@ -1,20 +1,28 @@
 import styled from "styled-components";
+import { NavLink } from "../../components/header/header-styles";
 
 export const LoginContainer = styled.div`
-  width: auto;
   height: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: auto;
   text-align: center;
-
+  margin-top: 28vh;
   padding: 20px;
   border-radius: 5px;
+  max-width: 400px;
 `;
 
 export const FormContainer = styled.form`
-  width: 400px;
+  width: 100%;
+`;
+
+export const Links = styled(NavLink)`
+  ${({ fokus }) =>
+    fokus &&
+    `
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    `}
 `;
 
 export const Input = styled.input`
@@ -38,6 +46,9 @@ export const Input = styled.input`
   &:focus {
     border-width: 1px;
     border-color: rgba(0, 0, 0, 0.5);
+    ${Links} {
+      display: none;
+    }
   }
 `;
 

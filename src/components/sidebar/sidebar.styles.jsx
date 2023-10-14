@@ -3,9 +3,13 @@ import styled, { keyframes } from "styled-components";
 const animationSidebarOpen = keyframes`
   
 from {
+
   transform: translateX(100%);
+
 } to {
+
   transform: translateX(0);
+
 
 }
 
@@ -14,9 +18,13 @@ from {
 const animationSidebarClose = keyframes`
   
 from {
+
   transform: translateX(0);
+
 } to {
   transform: translateX(100%);
+
+
 
 
 }
@@ -32,13 +40,13 @@ export const SidebarContainer = styled.div`
   bottom: 0;
   right: 0;
   transform: translateX(100%);
-  z-index: 4;
   padding: 0 3%;
 
   animation: ${(state) =>
       state.open ? animationSidebarOpen : animationSidebarClose}
     0.3s ease-in-out;
   animation-fill-mode: forwards; /* Biarkan elemen tetap di posisi akhir animasi */
+  z-index: 99;
 `;
 
 export const SidebarTittle = styled.div`
@@ -93,6 +101,7 @@ export const XIcon = styled.span`
 `;
 
 export const BlackBackground = styled.div`
+  z-index: 88;
   position: fixed;
   top: 0;
   left: 0;

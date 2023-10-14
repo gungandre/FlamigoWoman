@@ -29,6 +29,7 @@ import {
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import RecentProduct from "../../components/recentProductFooter/recentProductFooter.component";
+import { useNavigate } from "react-router-dom";
 
 const formatter = new Intl.NumberFormat("id-ID", {
   style: "currency",
@@ -39,10 +40,16 @@ const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector(cartSelector);
   const products = useSelector(selectProducts);
+  const navigate = useNavigate();
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
   const updateViewportWidth = () => {
     setViewportWidth(window.innerWidth);
+  };
+
+  const checkoutHandler = () => {
+    console.log("checkout");
+    navigate("/checkout");
   };
 
   useEffect(() => {
@@ -322,7 +329,7 @@ const Cart = () => {
             Total:{" "}
             {formatter.format(cart.reduce((acc, item) => acc + item.total, 0))}
           </p>
-          <Checkout>CHECKOUT</Checkout>
+          <Checkout onClick={checkoutHandler}>CHECKOUT</Checkout>
         </OrderNoteContainer2>
       </DivCheckout>
       <br />
@@ -332,175 +339,179 @@ const Cart = () => {
       <br />
     </CartContainer>
   ) : (
-    <CartContainer>
-      <div style={{ textAlign: "center", marginBottom: "30px" }}>
-        <h3 style={{ fontSize: "20px", fontWeight: "initial" }}>CART</h3>
-      </div>
+    <>
+      <CartContainer>
+        <br />
+        <br />
+        <div style={{ textAlign: "center", marginBottom: "30px" }}>
+          <h3 style={{ fontSize: "20px", fontWeight: "initial" }}>CART</h3>
+        </div>
 
-      <table width={"100%"}>
-        {cart.map((cart, i) => (
-          <>
-            <tr key={i}>
-              <td
-                align="left"
-                style={{
-                  color: "#1c1c1ca6",
-                  fontSize: "12px",
-                  width: "100px",
-                }}
-              >
-                <div
+        <table width={"100%"}>
+          {cart.map((cart, i) => (
+            <>
+              <tr key={i}>
+                <td
+                  align="left"
                   style={{
-                    display: "flex",
-
-                    alignItems: "center",
+                    color: "#1c1c1ca6",
+                    fontSize: "12px",
+                    width: "100px",
                   }}
                 >
-                  <ImgContainer
-                    style={{ width: viewportWidth < 700 && "80px" }}
-                  >
-                    <div>
-                      <img src={`/produk/${cart.img}`} alt={`${cart.img}`} />
-                    </div>
-                  </ImgContainer>
-                </div>
-              </td>
-              <td
-                width={"auto"}
-                style={{
-                  color: "#1c1c1ca6",
-                  fontSize: "12px",
-                }}
-              >
-                <div style={{ width: "auto" }}>
-                  <div style={{ fontSize: "12px", color: "black" }}>
-                    <NavLink to={`/shop/${cart.name}`}>{cart.name}</NavLink>
-                  </div>
-
-                  <div style={{ fontSize: "12px", marginTop: "5px" }}>
-                    {formatter.format(cart.harga)}
-                  </div>
-                  <div style={{ fontSize: "12px", marginTop: "5px" }}>
-                    {cart.size}
-                  </div>
-                </div>
-                <div
-                  style={{
-                    width: "160px",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginTop: "10px",
-                  }}
-                >
-                  <QtyContainer2>
-                    <GridQtyContainer2>
-                      <Minus2
-                        onClick={() =>
-                          minusHandler(
-                            cart.name,
-                            cart.size,
-                            cart.qty,
-                            cart.harga,
-                            cart.total
-                          )
-                        }
-                      >
-                        <b>-</b>
-                      </Minus2>
-                      <Qty2>{cart.qty}</Qty2>
-                      <Plus2
-                        onClick={() => {
-                          plusHandler(
-                            cart.name,
-                            cart.size,
-                            cart.qty,
-                            cart.harga,
-                            cart.total
-                          );
-                        }}
-                      >
-                        <div>
-                          <b>+</b>
-                        </div>
-                      </Plus2>
-                    </GridQtyContainer2>
-                  </QtyContainer2>
-
-                  <Remove
+                  <div
                     style={{
-                      fontSize: "12px",
-                      width: viewportWidth < 700 && "auto",
+                      display: "flex",
+
+                      alignItems: "center",
                     }}
-                    onClick={() =>
-                      removeHandler(cart.name, cart.size, cart.qty)
-                    }
                   >
-                    Remove
-                    <Line></Line>
-                  </Remove>
-                </div>
-              </td>
+                    <ImgContainer
+                      style={{ width: viewportWidth < 700 && "80px" }}
+                    >
+                      <div>
+                        <img src={`/produk/${cart.img}`} alt={`${cart.img}`} />
+                      </div>
+                    </ImgContainer>
+                  </div>
+                </td>
+                <td
+                  width={"auto"}
+                  style={{
+                    color: "#1c1c1ca6",
+                    fontSize: "12px",
+                  }}
+                >
+                  <div style={{ width: "auto" }}>
+                    <div style={{ fontSize: "12px", color: "black" }}>
+                      <NavLink to={`/shop/${cart.name}`}>{cart.name}</NavLink>
+                    </div>
 
-              <td
-                align="right"
-                width={"20%"}
-                style={{
-                  color: "#1c1c1ca6",
-                  fontSize: "14px",
-                }}
-              ></td>
-            </tr>
-            <div style={{ marginTop: "20px" }}></div>
-          </>
-        ))}
-      </table>
-      <br />
+                    <div style={{ fontSize: "12px", marginTop: "5px" }}>
+                      {formatter.format(cart.harga)}
+                    </div>
+                    <div style={{ fontSize: "12px", marginTop: "5px" }}>
+                      {cart.size}
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      width: "160px",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      marginTop: "10px",
+                    }}
+                  >
+                    <QtyContainer2>
+                      <GridQtyContainer2>
+                        <Minus2
+                          onClick={() =>
+                            minusHandler(
+                              cart.name,
+                              cart.size,
+                              cart.qty,
+                              cart.harga,
+                              cart.total
+                            )
+                          }
+                        >
+                          <b>-</b>
+                        </Minus2>
+                        <Qty2>{cart.qty}</Qty2>
+                        <Plus2
+                          onClick={() => {
+                            plusHandler(
+                              cart.name,
+                              cart.size,
+                              cart.qty,
+                              cart.harga,
+                              cart.total
+                            );
+                          }}
+                        >
+                          <div>
+                            <b>+</b>
+                          </div>
+                        </Plus2>
+                      </GridQtyContainer2>
+                    </QtyContainer2>
 
-      <hr />
+                    <Remove
+                      style={{
+                        fontSize: "12px",
+                        width: viewportWidth < 700 && "auto",
+                      }}
+                      onClick={() =>
+                        removeHandler(cart.name, cart.size, cart.qty)
+                      }
+                    >
+                      Remove
+                      <Line></Line>
+                    </Remove>
+                  </div>
+                </td>
 
-      <br />
+                <td
+                  align="right"
+                  width={"20%"}
+                  style={{
+                    color: "#1c1c1ca6",
+                    fontSize: "14px",
+                  }}
+                ></td>
+              </tr>
+              <div style={{ marginTop: "20px" }}></div>
+            </>
+          ))}
+        </table>
+        <br />
 
-      <DivCheckout>
-        <OrderNoteContainer>
-          <p style={{ fontSize: viewportWidth < 700 && "14px" }}>
-            Add order note
-          </p>
-          <br />
-          <textarea
-            placeholder="How can we help you?"
-            style={{
-              minWidth: "100%",
-              padding: "10px 10px",
-              backgroundColor: "#f0efef",
+        <hr />
 
-              height: "100px",
-              outline: "none",
-            }}
-            onFocus={(event) =>
-              (event.target.style.border = "1px solid rgba(0,0,0, 0.5)")
-            }
-            /* Ketika elemen mendapatkan fokus, atur lebar border lebih tebal */
-            onBlur={(event) =>
-              (event.target.style.border = "1px solid rgba(0,0,0, 0.2)")
-            }
-          ></textarea>
-        </OrderNoteContainer>
-        <OrderNoteContainer2>
-          <br />
-          <p style={{ fontSize: "16px" }}>
-            Total:{" "}
-            {formatter.format(cart.reduce((acc, item) => acc + item.total, 0))}
-          </p>
-          <Checkout>CHECKOUT</Checkout>
-        </OrderNoteContainer2>
-      </DivCheckout>
-      <br />
-      <br />
-      <hr />
-      <br />
+        <br />
 
+        <DivCheckout>
+          <OrderNoteContainer>
+            <p style={{ fontSize: viewportWidth < 700 && "14px" }}>
+              Add order note
+            </p>
+            <br />
+            <textarea
+              placeholder="How can we help you?"
+              style={{
+                minWidth: "100%",
+                padding: "10px 10px",
+                backgroundColor: "#f0efef",
+
+                height: "100px",
+                outline: "none",
+              }}
+              onFocus={(event) =>
+                (event.target.style.border = "1px solid rgba(0,0,0, 0.5)")
+              }
+              /* Ketika elemen mendapatkan fokus, atur lebar border lebih tebal */
+              onBlur={(event) =>
+                (event.target.style.border = "1px solid rgba(0,0,0, 0.2)")
+              }
+            ></textarea>
+          </OrderNoteContainer>
+          <OrderNoteContainer2>
+            <br />
+            <p style={{ fontSize: "16px" }}>
+              Total:{" "}
+              {formatter.format(
+                cart.reduce((acc, item) => acc + item.total, 0)
+              )}
+            </p>
+            <Checkout onClick={checkoutHandler}>CHECKOUT</Checkout>
+          </OrderNoteContainer2>
+        </DivCheckout>
+
+        <br />
+        <hr />
+      </CartContainer>
       <RecentProduct viewWidth={viewportWidth} />
-    </CartContainer>
+    </>
   );
 };
 

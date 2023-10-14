@@ -17,7 +17,8 @@ export const SoldOut = styled.div`
   font-size: 12px;
   top: 5px;
   left: 5px;
-  z-index: 1;
+
+  z-index: ${(props) => (props.burgerButton ? "0" : "1")};
   display: ${(props) => (props.sold ? "block" : "none")};
 `;
 
@@ -36,7 +37,7 @@ export const ContainerCartItem = styled.div`
   max-width: 300px;
   max-height: 500px;
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: ${(state) => (state.marginBottom ? "40px" : "10px")};
 
   animation: ${slideIn} 1s ease;
 

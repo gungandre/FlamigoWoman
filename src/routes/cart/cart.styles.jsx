@@ -50,7 +50,7 @@ export const CartContainer = styled.div`
   }
 
   @media screen and (max-width: 700px) {
-    margin: 100px auto;
+    margin: 40px auto;
   }
 `;
 

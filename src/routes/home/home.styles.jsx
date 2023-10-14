@@ -33,7 +33,9 @@ export const LazyLoadElement = ({ product, sold }) => {
 
   return (
     <div ref={ref} inView={inView}>
-      {inView ? <CartItemStyled product={product} sold={sold} /> : null}
+      {inView ? (
+        <CartItemStyled product={product} sold={sold} marginBottom={40} />
+      ) : null}
     </div>
   );
 };

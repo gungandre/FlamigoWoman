@@ -19,7 +19,7 @@ const Sidebar = ({ menuOpen, cartTotal }) => {
   };
 
   return (
-    <div>
+    <>
       <SidebarContainer open={menuOpen}>
         <SidebarTittle>
           <p>MENU</p>
@@ -28,10 +28,10 @@ const Sidebar = ({ menuOpen, cartTotal }) => {
 
         <hr />
         <MenuSidebarContainer>
-          <NavLink>
+          <NavLink to={"/account"}>
             <P>Account</P>
           </NavLink>
-          <NavLink to={"/"} style={{ marginBottom: "10px" }}>
+          <NavLink to={"/shop"} style={{ marginBottom: "10px" }}>
             <P>Shop</P>
           </NavLink>
           <NavLink to={"/cart"} style={{ marginBottom: "10px" }}>
@@ -41,7 +41,7 @@ const Sidebar = ({ menuOpen, cartTotal }) => {
       </SidebarContainer>
 
       <BlackBackground style={{ display: menuOpen ? "block" : "none" }} />
-    </div>
+    </>
   );
 };
 

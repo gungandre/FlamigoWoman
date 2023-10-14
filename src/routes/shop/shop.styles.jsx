@@ -14,10 +14,11 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
+  z-index: ${(props) => (props.burgerButton ? "1" : "2")};
+  background-color: #f0efef;
   position: sticky;
 
-  z-index: 2;
-  background-color: #f0efef;
+  top: ${(props) => props.top}px;
 `;
 
 export const FlexContainer = styled.div`
@@ -37,6 +38,33 @@ export const FlexDropdown = styled.div`
   flex-direction: row-reverse;
   position: relative;
   z-index: 1;
+`;
+
+export const FilterFlexContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const FilterContainer = styled.div`
+  width: 150px;
+  height: 50px;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+
+export const Filter = styled.div`
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+  transition: color 0.3s ease-in-out;
+  &:hover {
+    color: black;
+  }
 `;
 
 export const DropdownContainer = styled.div`
@@ -120,6 +148,10 @@ export const Panah = styled.span`
 export const ProductContainer = styled.div`
   display: grid;
   grid-template-columns: 20% 80%;
+
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: 100%;
+  }
 `;
 
 export const GridProducts = styled.div`
@@ -133,6 +165,14 @@ export const GridProducts2 = styled.div`
   grid-template-columns: auto auto auto auto;
   grid-gap: 30px;
   padding: 0px 20px;
+  @media screen and (max-width: 1000px) {
+    padding: 0px 5px;
+  }
+
+  @media screen and (max-width: 700px) {
+    grid-template-columns: auto auto;
+    padding: 0px 5px;
+  }
 `;
 
 export const Availability = styled.div`
@@ -187,7 +227,7 @@ export const Toggle = styled.div`
 
 export const ToggleContainer = styled.div`
   animation: ${toggleAnimation} 0.3s ease-in-out;
-  width: 50%;
+  width: 105px;
   display: flex;
   align-items: center;
   justify-content: space-between;

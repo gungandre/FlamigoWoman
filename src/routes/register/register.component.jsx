@@ -5,14 +5,19 @@ import { ButtonRegister } from "./register.styles";
 import { NavLink } from "../../components/header/header-styles";
 import { auth } from "../../utils/firebase,utils";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { setUser } from "../../store/user/user.reducer";
-import { useDispatch } from "react-redux";
+
+import { Background } from "../chekout/checkout.styles";
+import Spinner from "../../components/spinner/spinner.component";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const submitHandler = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     const form = new FormData(event.currentTarget);
     const email = form.get("email");
@@ -24,21 +29,23 @@ const Register = () => {
     }
 
     try {
-      const register = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      await createUserWithEmailAndPassword(auth, email, password);
 
-      dispatch(setUser(register));
+      setLoading(false);
+      navigate("/login");
     } catch (error) {
       alert(error);
-      console.log(error);
+      setLoading(false);
     }
   };
 
   return (
     <RegisterContainer>
+      {loading && (
+        <Background>
+          <Spinner />
+        </Background>
+      )}
       <h2>SIGN UP</h2>
       <br />
       <p>Please fill in the information below:</p>

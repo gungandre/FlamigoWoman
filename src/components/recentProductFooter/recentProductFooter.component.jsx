@@ -20,13 +20,14 @@ const RecentProduct = ({ viewWidth }) => {
     <RecentProductsContainer>
       <h1>RECENTLY VIEWED PRODUCTS</h1>
       <br />
-      <FlexContainer>
+      <FlexContainer viewWidth={viewWidth <= 700}>
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           spaceBetween={viewWidth < 700 ? 20 : 50}
           slidesPerView={
             viewWidth > 999 ? 4 : viewWidth <= 999 && viewWidth > 699 ? 3 : 2
           }
+          navigation={viewWidth <= 1000 ? false : true}
           pagination={{ clickable: true }}
           onSwiper={(swiper) => console.log(swiper)}
           onSlideChange={() => console.log("slide change")}
@@ -35,7 +36,12 @@ const RecentProduct = ({ viewWidth }) => {
             const isAllZero = product.size.every((item) => item.qty === 0);
             return (
               <SwiperSlide>
-                <LazyLoadElement key={i} product={product} sold={isAllZero} />
+                <LazyLoadElement
+                  key={i}
+                  product={product}
+                  sold={isAllZero}
+                  marginBottom={40}
+                />
               </SwiperSlide>
             );
           })}

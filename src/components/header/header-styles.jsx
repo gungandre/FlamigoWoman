@@ -9,7 +9,12 @@ export const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 4;
+
+  @media screen and (max-width: 800px) {
+    height: 80px;
+    padding: 0px;
+  }
 
   @media screen and (max-width: 699px) {
     height: 60px;
